@@ -82,8 +82,6 @@ fun LoginScreen(navController: NavController) {
 
     val textFieldColors = TextFieldDefaults.textFieldColors(focusedIndicatorColor = Color.Green)
 
-    //val textColor = if (isFocused) Color.Green else Color.Black
-
     val tamanhoMaximo = 8
 
     Box() {
@@ -102,7 +100,6 @@ fun LoginScreen(navController: NavController) {
                         .padding(top = 14.dp)
                 )
             }
-            //Spacer(modifier = Modifier.padding(16.dp))
             Column(
                 modifier = Modifier
                     .background(Color.Gray)
