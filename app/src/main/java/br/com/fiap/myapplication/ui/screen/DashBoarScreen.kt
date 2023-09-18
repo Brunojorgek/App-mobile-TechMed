@@ -7,6 +7,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -79,8 +80,9 @@ fun DashboardScreen(navController: NavController) {
             especialidade = "Cardiologista", "José Alves da silva"
         )
         Spacer(modifier = Modifier.height(60.dp))
-        BottomBar(navController)
+
     }
+    BottomBarDasboard(navController)
 }
 
 @Composable
@@ -155,7 +157,7 @@ fun BoxModel(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .height(150.dp)
+            .height(100.dp)
             .padding(horizontal = 15.dp)
     ) {
         Box(
@@ -330,60 +332,63 @@ fun UserInfo(paciente: Paciente) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomBar(navController: NavController) {
-    BottomAppBar(
-        modifier = Modifier
-            .height(90.dp)
-            .fillMaxWidth(), containerColor = Green60
-    ) {
-        Row(
+fun BottomBarDasboard(navController: NavController) {
+    Column(modifier = Modifier.fillMaxSize(), Arrangement.Bottom) {
+        BottomAppBar(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+                .height(50.dp)
+                .fillMaxWidth(), containerColor = Green60
         ) {
-            IconButton(
-                onClick = { navController.navigate("dashboard") },
-                modifier = Modifier.padding(16.dp)
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(60.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Icon(
-                    imageVector = Icons.Default.Home,
-                    contentDescription = "Home"
-                )
+                IconButton(
+                    onClick = { navController.navigate("dashboard") }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Home,
+                        contentDescription = "Home",
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+
+                IconButton(
+                    onClick = { navController.navigate("marcarConsulta") }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.DateRange,
+                        contentDescription = "Home",
+                        modifier = Modifier.size(30.dp)
+                    )
+                }
+
+                IconButton(
+                    onClick = { navController.navigate("carteirinha") }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AccountBox,
+                        contentDescription = "Search",
+                        modifier = Modifier.size(30.dp)
+
+                    )
+
+                }
+
+                IconButton(
+                    onClick = { }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = "Profile",
+                        modifier = Modifier.size(30.dp)
+
+                    )
+                }
             }
 
-            IconButton(
-                onClick = { navController.navigate("marcarConsulta") },
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.DateRange,
-                    contentDescription = "Home"
-                )
-            }
-
-
-            IconButton(
-                onClick = { navController.navigate("carteirinha") },
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.AccountBox,
-                    contentDescription = "Search"
-                )
-
-            }
-
-            IconButton(
-                onClick = { },
-                modifier = Modifier.padding(16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.AccountCircle,
-                    contentDescription = "Profile"
-                )
-            }
         }
-
     }
 }
